@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Pressable,
+  Button,
+} from "react-native";
 import React from "react";
 import { CATEGORIES } from "../data/dummyData";
 
@@ -27,6 +34,10 @@ export default function CategoryScreen({ navigation }) {
     );
   }
 
+  function openDrawer() {
+    navigation.toggleDrawer();
+  }
+
   return (
     <View style={styles.screen}>
       <FlatList
@@ -35,6 +46,7 @@ export default function CategoryScreen({ navigation }) {
         numColumns={2}
         renderItem={renderCategoryTile}
       />
+      <Button title="Open Drawer" onPress={openDrawer} />
     </View>
   );
 }
