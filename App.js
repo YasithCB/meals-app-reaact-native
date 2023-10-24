@@ -4,17 +4,19 @@ import CategoryScreen from "./screens/CategoryScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import MealsOverview from "./screens/MealsOverview";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <>
       <StatusBar style="auto"></StatusBar>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Categories" component={CategoryScreen} />
-          <Stack.Screen
+        <Drawer.Navigator initialRouteName="Categories">
+          <Drawer.Screen name="Categories" component={CategoryScreen} />
+          <Drawer.Screen
             name="Meals Overview"
             component={MealsOverview}
             options={{
@@ -28,7 +30,7 @@ export default function App() {
               },
             }}
           />
-        </Stack.Navigator>
+        </Drawer.Navigator>
       </NavigationContainer>
     </>
   );
