@@ -6,7 +6,7 @@ export default function MealItem({ meal }) {
   const navigation = useNavigation();
 
   function onPressItem() {
-    navigation.navigate("Meal Details", { title: meal.title });
+    navigation.navigate("Meal Details", { meal: meal });
   }
 
   return (

@@ -9,6 +9,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MealDetails from "./screens/MealDetailsScreen";
 import FavoriteScreen from "./screens/FavoriteScreen";
 import MealDetailsScreen from "./screens/MealDetailsScreen";
+import { Provider } from "react-redux";
+import { store } from "./store/redux/store";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -27,8 +29,9 @@ export default function App() {
   return (
     <>
       <StatusBar style="auto"></StatusBar>
-      <NavigationContainer>
-        {/* <BottomTab.Navigator initialRouteName="Categories">
+      <Provider store={store}>
+        <NavigationContainer>
+          {/* <BottomTab.Navigator initialRouteName="Categories">
           <BottomTab.Screen name="Categories" component={CategoryScreen} />
           <BottomTab.Screen
             name="Meals Overview"
@@ -48,29 +51,30 @@ export default function App() {
           <BottomTab.Screen name="Meal Details" component={MealDetails} />
         </BottomTab.Navigator> */}
 
-        <Stack.Navigator initialRouteName="Categories">
-          <Stack.Screen
-            name="Drawer"
-            component={DrawerNavigator}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Meals Overview"
-            component={MealsOverview}
-            options={{
-              headerRight: () => {
-                return (
-                  <Button
-                    title="Press Me"
-                    onPress={() => console.log("pressed header button...")}
-                  />
-                );
-              },
-            }}
-          />
-          <Stack.Screen name="Meal Details" component={MealDetailsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+          <Stack.Navigator initialRouteName="Categories">
+            <Stack.Screen
+              name="Drawer"
+              component={DrawerNavigator}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Meals Overview"
+              component={MealsOverview}
+              options={{
+                headerRight: () => {
+                  return (
+                    <Button
+                      title="Press Me"
+                      onPress={() => console.log("pressed header button...")}
+                    />
+                  );
+                },
+              }}
+            />
+            <Stack.Screen name="Meal Details" component={MealDetailsScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     </>
   );
 }
